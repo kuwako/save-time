@@ -13,6 +13,7 @@
 		5EEA649B1BAD12CA004D34C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EEA64991BAD12CA004D34C4 /* Main.storyboard */; };
 		5EEA64A61BAD12CB004D34C4 /* save_timeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA64A51BAD12CB004D34C4 /* save_timeTests.swift */; };
 		5EEA64B11BAD12CB004D34C4 /* save_timeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA64B01BAD12CB004D34C4 /* save_timeUITests.swift */; };
+		5EEA64BF1BADB590004D34C4 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA64BE1BADB590004D34C4 /* ApplicationData.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		5EEA64AC1BAD12CB004D34C4 /* save-timeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "save-timeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EEA64B01BAD12CB004D34C4 /* save_timeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = save_timeUITests.swift; sourceTree = "<group>"; };
 		5EEA64B21BAD12CB004D34C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EEA64BE1BADB590004D34C4 /* ApplicationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				5EEA64971BAD12CA004D34C4 /* Assets.xcassets */,
 				5EEA64991BAD12CA004D34C4 /* Main.storyboard */,
 				5EEA649C1BAD12CA004D34C4 /* Info.plist */,
+				5EEA64BE1BADB590004D34C4 /* ApplicationData.swift */,
 			);
 			path = "save-time";
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EEA64BF1BADB590004D34C4 /* ApplicationData.swift in Sources */,
 				5EEA64961BAD12CA004D34C4 /* ViewController.swift in Sources */,
 				5EEA64941BAD12CA004D34C4 /* AppDelegate.swift in Sources */,
 			);
