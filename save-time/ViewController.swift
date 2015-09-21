@@ -14,35 +14,17 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var timeTable: NSTableView!
     @IBAction func saveButton(sender: AnyObject) {
-        
-        let app = NSApplication.sharedApplication()
-        print(app.mainWindow!.title)
-        
-        let appObj = ApplicationData()
-        appObj.appName = app.mainWindow!.title
-        
-        appArr.append(appObj)
-
-        timeTable.reloadData()
-        
-//        for obj in winArr {
-//            NSLog("window = %@",obj.title)
-//        }
-        
+        updateAppTableView()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Initialize appArr
         print("Initialize App")
-        print(appArr.count)
-        if self.appArr.count == 0 {
-            var appData : ApplicationData!
-            
-            appData = ApplicationData()
-            appData.appName="masaki"
-            appArr.append(appData)
-        }
+        
+        // 1分おきにその時起動中のアプリケーションを記録
+        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"updateAppTableView", userInfo: nil, repeats: true)
     }
 
     override var representedObject: AnyObject? {
@@ -51,11 +33,13 @@ class ViewController: NSViewController {
         }
     }
     
+    // NSTableView使うのに必要
     func numberOfRowsInTableView(timeTable: NSTableView) -> Int
     {
         return appArr.count
     }
     
+    // NSTableView使うのに必要
     func tableView(timeTable: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         let timeStr = appArr[row].getTimeStr()
         let appName = appArr[row].appName
@@ -72,6 +56,27 @@ class ViewController: NSViewController {
         }
         
         return ""
+    }
+    
+    // テーブルを更新するメソッド
+    func updateAppTableView() {
+        // 起動中のアプリケーション一覧を取得
+        let runningApps = NSWorkspace.sharedWorkspace().runningApplications
+        
+        for app in runningApps {
+            
+            // アクティブなものを出力
+            if app.active {
+                let appObj = ApplicationData()
+                appObj.appName = app.localizedName!
+             
+                // 配列の先頭に追加
+                appArr.insert(appObj, atIndex: 0)
+            }
+        }
+        
+        // テーブル更新
+        timeTable.reloadData()
     }
 }
 

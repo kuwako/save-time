@@ -17,8 +17,8 @@ class ApplicationData: NSObject{
         let jaLocale = NSLocale(localeIdentifier: "ja_JP")
         let fmt = NSDateFormatter()
         fmt.locale = jaLocale
-        fmt.timeStyle = .LongStyle
-        fmt.dateStyle = .LongStyle
+        fmt.timeStyle = .ShortStyle
+        fmt.dateStyle = .ShortStyle
         
         return fmt.stringFromDate(self.time)
     }
