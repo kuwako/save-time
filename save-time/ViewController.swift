@@ -16,6 +16,13 @@ class ViewController: NSViewController {
     @IBAction func saveButton(sender: AnyObject) {
         updateAppTableView()
     }
+    @IBAction func resetButton(sender: AnyObject) {
+        // 配列内全削除
+        appArr.removeAll()
+        
+        // テーブル更新
+        timeTable.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +67,7 @@ class ViewController: NSViewController {
     
     // テーブルを更新するメソッド
     func updateAppTableView() {
-        // 起動中のアプリケーション一覧を取得
+        // 起動中のアプリケーション一覧   を取得
         let runningApps = NSWorkspace.sharedWorkspace().runningApplications
         
         for app in runningApps {
@@ -78,5 +85,6 @@ class ViewController: NSViewController {
         // テーブル更新
         timeTable.reloadData()
     }
+    
 }
 

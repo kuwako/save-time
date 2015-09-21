@@ -673,7 +673,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B8w-2d-10e">
-                                <rect key="frame" x="377" y="22" width="66" height="32"/>
+                                <rect key="frame" x="377" y="40" width="66" height="32"/>
                                 <buttonCell key="cell" type="push" title="記録" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="REN-MS-jbT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -756,6 +756,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXz-Eg-xch">
+                                <rect key="frame" x="377" y="13" width="92" height="32"/>
+                                <buttonCell key="cell" type="push" title="リセット" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FZD-dK-ur6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name="HiraKakuProN-W3"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetButton:" target="XfG-lQ-9wD" id="828-Mj-RrZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
