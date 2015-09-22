@@ -11,7 +11,7 @@ import Foundation
 class ApplicationData: NSObject{
     var time: NSDate = NSDate()
     var appName: String = "application name"
-    var isActive :Bool = true
+    var isActive :String = "○"
 
     func getTimeStr() -> String {
         let jaLocale = NSLocale(localeIdentifier: "ja_JP")

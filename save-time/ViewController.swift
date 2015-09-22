@@ -11,11 +11,17 @@ import Cocoa
 class ViewController: NSViewController {
 
     var appArr : [ApplicationData] = []
+    let interval_sec : NSTimeInterval = 10
+    var last_control_sec : Int = 0
     
     @IBOutlet weak var timeTable: NSTableView!
+    
+    // 記録ボタン
     @IBAction func saveButton(sender: AnyObject) {
         updateAppTableView()
     }
+    
+    // リセットボタン
     @IBAction func resetButton(sender: AnyObject) {
         // 配列内全削除
         appArr.removeAll()
@@ -31,7 +37,19 @@ class ViewController: NSViewController {
         print("Initialize App")
         
         // 1分おきにその時起動中のアプリケーションを記録
-        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"updateAppTableView", userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(interval_sec, target: self, selector:"updateAppTableView", userInfo: nil, repeats: true)
+        // コントロールに最後に触れてからの時間をカウントアップ
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:"updateLastControlSec", userInfo: nil, repeats: true)
+        
+        // グローバルでキーダウンがあればカウントリセット
+        NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.KeyDownMask, handler: {(evt: NSEvent!) -> Void in
+            self.last_control_sec = 0
+        });
+        
+        // マウスが動いたらカウントリセット
+        NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.MouseMovedMask, handler: {(evt: NSEvent!) -> Void in
+            self.last_control_sec = 0
+        });
     }
 
     override var representedObject: AnyObject? {
@@ -50,6 +68,7 @@ class ViewController: NSViewController {
     func tableView(timeTable: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         let timeStr = appArr[row].getTimeStr()
         let appName = appArr[row].appName
+        let isActive = appArr[row].isActive
         let columnName = tableColumn?.identifier
         
         if columnName == "time" {
@@ -59,7 +78,7 @@ class ViewController: NSViewController {
             return appName
         }
         else if columnName == "active" {
-            return "true"
+            return isActive
         }
         
         return ""
@@ -76,6 +95,13 @@ class ViewController: NSViewController {
             if app.active {
                 let appObj = ApplicationData()
                 appObj.appName = app.localizedName!
+                
+                // インターバルの間に最後にコントロールをさわったかを判定
+                if last_control_sec > Int(interval_sec) {
+                    appObj.isActive = "×"
+                } else {
+                    appObj.isActive = "○"
+                }
              
                 // 配列の先頭に追加
                 appArr.insert(appObj, atIndex: 0)
@@ -86,5 +112,10 @@ class ViewController: NSViewController {
         timeTable.reloadData()
     }
     
+    func updateLastControlSec() -> Void {
+        last_control_sec++
+    }
+    
+
 }
 
